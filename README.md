@@ -38,8 +38,8 @@ Network scanning identified active hosts and exposed services.
 
 ## 2. Vulnerability Identification
 Searchsploit was used to identify known vulnerabilities in OpenSSH and Samba services.
+![Searchsploit Results](screenshots/vulnerability-search-SAMBA.png)
 
-![Searchsploit Results](screenshots/searchsploit-openssh-vulnerabilities.png)
 
 ---
 
