@@ -3,58 +3,93 @@
 ## Overview
 This project simulates a real-world internal network security assessment using Kali Linux to identify, exploit, detect, and mitigate vulnerabilities within a controlled lab environment.
 
-## Objectives
-- Perform network reconnaissance and service enumeration
-- Identify vulnerabilities on target systems
-- Conduct password cracking and exploitation
-- Analyze network traffic and attacker behavior
-- Implement intrusion detection using Snort
-- Apply defensive measures using iptables
+---
+
+## Attack Workflow Overview
+![Attack Flowchart](screenshots/attack-flowchart-overview.png)
+
+---
 
 ## Network Setup
 - Attacker: Kali Linux (172.16.0.11)
 - Targets:
-  - 172.16.0.13 (OpenSSH 5.9)
-  - 172.16.0.14 (Apache 2.4.18, Samba 3.6.25)
+  - 172.16.0.13 (FTP, SSH, SMB)
+  - 172.16.0.14 (HTTP, SMB)
+
+---
 
 ## Tools Used
 - Nmap / Zenmap
-- Nessus
+- Searchsploit
 - Hydra
 - Metasploit
 - Wireshark
 - Snort IDS
 
-## Key Activities
+---
 
-### Reconnaissance
-Network scanning identified active hosts and open ports including SSH, HTTP, and SMB services.
+## 1. Reconnaissance
+Network scanning identified active hosts and exposed services.
 
-### Exploitation
-- Performed password cracking using Hydra
-- Gained access to target system via FTP
-- Navigated directories and identified sensitive files
+![Nmap Scan](screenshots/nmap-scan-172.16.0.13.png)
 
-### Post-Exploitation
-- Used `ls -la` to identify hidden files
-- Located relevant files within the system
+---
 
-### Detection
-Custom Snort rules were created to detect:
-- Suspicious HTTP requests (e.g., `/root`)
-- SMB traffic on port 445
+## 2. Vulnerability Identification
+Searchsploit was used to identify known vulnerabilities in OpenSSH and Samba services.
 
-### Mitigation
-- Implemented iptables rules to block malicious traffic
-- Prevented further exploitation attempts
+![Searchsploit Results](screenshots/searchsploit-openssh-vulnerabilities.png)
+
+---
+
+## 3. Exploitation (Credential Attack)
+A password attack using Hydra successfully compromised user credentials.
+
+![Hydra Password Crack](screenshots/hydra-password-crack-success.png)
+
+---
+
+## 4. Access & Data Exfiltration
+Using compromised credentials, FTP access was obtained and sensitive files were discovered and downloaded.
+
+![FTP Login](screenshots/ftp-login-success.png)
+
+![Data Exfiltration](screenshots/ftp-data-exfiltration.png)
+
+---
+
+## 5. Exploitation Attempt (Metasploit)
+An attempt was made to exploit a known Samba vulnerability using Metasploit.  
+No session was established, likely due to environmental constraints, demonstrating the need for alternative attack paths.
+
+![Metasploit Attempt](screenshots/metasploit-samba-exploit-attempt.png)
+
+---
+
+## 6. Detection (Snort IDS)
+Custom Snort rules were created to detect SMB-based attacks. Alerts were successfully triggered during attack simulation.
+
+![Snort Alert](screenshots/snort-alert-smb-detection.png)
+
+---
+
+## 7. Traffic Analysis (Wireshark)
+Network traffic analysis confirmed SMB communication and attack-related activity.
+
+![Wireshark Analysis](screenshots/wireshark-smb-traffic-analysis.png)
+
+---
 
 ## Key Takeaways
 - Weak credentials can lead to full system compromise
-- Network visibility is critical for detecting attacks
-- Intrusion detection systems provide early warning of malicious activity
-- Layered defense (detection + prevention) is essential
+- Multiple attack paths may be required when exploits fail
+- Intrusion Detection Systems (Snort) provide visibility into malicious activity
+- Network traffic analysis is critical for understanding attack behavior
+- Layered security (attack + detection + analysis) is essential
 
-## Project Structure
+---
+
+## Project Structure 
 - `/report` – full project documentation
 - `/screenshots` – evidence of scans, attacks, and detections
 - `/snort-rules` – custom detection rules
