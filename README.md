@@ -63,7 +63,7 @@ Using compromised credentials, FTP access was obtained and sensitive files were 
 An attempt was made to exploit a known Samba vulnerability using Metasploit.  
 No session was established, likely due to environmental constraints, demonstrating the need for alternative attack paths.
 
-![Metasploit Attempt](screenshots/metasploit-samba-exploit-attempt.png)
+![Metasploit Attempt](screenshots/metasploit-exploit-attempt-samba.png)
 
 ---
 
