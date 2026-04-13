@@ -72,7 +72,7 @@ Custom Snort rules were created to detect SMB-based attacks. Alerts were success
 
 ![Snort Alert](screenshots/snort-alert-smb-detection.png)
 
-Custom rules were designed to detect SMB-based attack patterns, including connection attempts and protocol negotiation activity.
+Custom rules used in this project can be found in the `/snort-rules/snort-rules.txt` file.
 
 ---
 
