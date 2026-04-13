@@ -7,6 +7,7 @@ This project simulates a real-world internal network security assessment using K
 
 ## Attack Workflow Overview
 ![Attack Flowchart](screenshots/attack-flowchart-overview.png)
+This diagram illustrates the end-to-end attack lifecycle, from reconnaissance to full system compromise and detection.
 
 ---
 
@@ -70,6 +71,8 @@ No session was established, likely due to environmental constraints, demonstrati
 Custom Snort rules were created to detect SMB-based attacks. Alerts were successfully triggered during attack simulation.
 
 ![Snort Alert](screenshots/snort-alert-smb-detection.png)
+
+Custom rules were designed to detect SMB-based attack patterns, including connection attempts and protocol negotiation activity.
 
 ---
 
