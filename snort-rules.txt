@@ -1,0 +1,10 @@
+# Snort Rules for SMB Attack Detection
+
+# Detect general SMB suspicious activity
+alert tcp any any -> 172.16.0.13 445 (msg:"SMB SUSPICIOUS ACTIVITY DETECTED"; sid:1000001;)
+
+# Detect SMB connection attempts
+alert tcp any any -> 172.16.0.13 445 (msg:"SMB CONNECTION ATTEMPT"; sid:1000002;)
+
+# Detect SMB protocol negotiation requests
+alert tcp any any -> 172.16.0.13 445 (msg:"SMB NEGOTIATE PROTOCOL REQUEST DETECTED"; sid:1000003;)
